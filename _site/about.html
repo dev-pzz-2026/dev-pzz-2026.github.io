@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 · 我的个人网站</title>
+  <style>
+    :root {
+      --ink: #2c2c2c;
+      --ink-light: #5a5a5a;
+      --ink-lighter: #999;
+      --paper: #f5f0e8;
+      --paper-dark: #ede6d8;
+      --red: #b33a3a;
+      --plum: #d4a5a5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", Georgia, serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 2;
+      font-size: 16px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* 宣纸纹理 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(180,160,130,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(180,160,130,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(200,180,150,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* 梅花枝桠背景 */
+    .plum-branch {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 420px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.9;
+      mix-blend-mode: multiply;
+      -webkit-mask-image: radial-gradient(ellipse 120% 100% at 100% 0%, black 40%, transparent 100%);
+      mask-image: radial-gradient(ellipse 120% 100% at 100% 0%, black 40%, transparent 100%);
+      transform-origin: 100% 0%;
+      animation: branch-sway 6s ease-in-out infinite;
+    }
+    @keyframes branch-sway {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1.5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-1deg); }
+    }
+    nav {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--paper-dark);
+    }
+    nav .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+    }
+    nav .links { display: flex; gap: 2rem; }
+    nav .links a {
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    nav .links a:hover, nav .links a.active { color: var(--red); }
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+      writing-mode: horizontal-tb;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    p { margin-bottom: 1rem; color: var(--ink); }
+    a { color: var(--red); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* 印章 */
+    .seal {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.7rem;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      font-family: "KaiTi", "STKaiti", serif;
+    }
+    /* 文章列表 */
+    .post-list { margin-top: 2rem; }
+    .post-item {
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--paper-dark);
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item .title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .post-item .title:hover { color: var(--red); }
+    .post-item .meta {
+      font-size: 0.8rem;
+      color: var(--ink-lighter);
+      margin-top: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      background: var(--paper-dark);
+      padding: 0.1rem 0.6rem;
+      border-radius: 2px;
+      margin-left: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+    blockquote {
+      border-left: 2px solid var(--paper-dark);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+    footer {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      text-align: center;
+      color: var(--ink-lighter);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--paper-dark);
+    }
+    /* 飘落花瓣容器 */
+    .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -20px;
+      font-size: 14px;
+      color: var(--plum);
+      opacity: 0;
+      animation: petal-fall linear infinite;
+    }
+    @keyframes petal-fall {
+      0% {
+        transform: translateY(-20px) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.6; }
+      100% {
+        transform: translateY(100vh) translateX(80px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 梅花枝桠SVG -->
+  <img src="/assets/plum-branch-converted.svg" alt="" class="plum-branch">
+
+  <!-- 飘落花瓣 -->
+  <div class="petals" id="petals"></div>
+
+  <nav>
+    <a href="/" class="brand">半夏叁分<span class="seal">印</span></a>
+    <div class="links">
+      <a href="/" >首页</a>
+      <a href="/about/" >关于</a>
+      <a href="/blog/" >博客</a>
+    </div>
+  </nav>
+  <main>
+    <h1 id="关于半夏叁分">关于半夏叁分</h1>
+
+<p>你好，我是一名热爱文字与技术的写作者。</p>
+
+<h2 id="兴趣">兴趣</h2>
+
+<ul>
+  <li>📖 阅读与写作</li>
+  <li>💻 软件开发</li>
+  <li>🏔️ 登山与旅行</li>
+  <li>🍵 茶文化</li>
+</ul>
+
+<h2 id="联系">联系</h2>
+
+<ul>
+  <li>邮箱：941212702@qq.com</li>
+  <li>GitHub：dev-pzz-2026</li>
+</ul>
+
+<hr />
+
+<p><em>人生海海，山山而川。</em></p>
+
+  </main>
+  <footer>
+    © 2026 半夏叁分 · 舍岁余生
+  </footer>
+
+  <script>
+    // 生成飘落花瓣和雪花
+    (function() {
+      const container = document.getElementById('petals');
+      const petalCount = 10;
+      const snowCount = 5;
+      const symbols = ['❀', '❁', '❃'];
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (8 + Math.random() * 8) + 's';
+        petal.style.animationDelay = (Math.random() * 10) + 's';
+        petal.style.fontSize = (10 + Math.random() * 10) + 'px';
+        container.appendChild(petal);
+      }
+      for (let i = 0; i < snowCount; i++) {
+        const snow = document.createElement('div');
+        snow.className = 'petal';
+        snow.textContent = '❄';
+        snow.style.left = Math.random() * 100 + '%';
+        snow.style.animationDuration = (10 + Math.random() * 10) + 's';
+        snow.style.animationDelay = (Math.random() * 15) + 's';
+        snow.style.fontSize = (8 + Math.random() * 8) + 'px';
+        snow.style.color = '#ccc';
+        snow.style.opacity = '0.6';
+        container.appendChild(snow);
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -3,9 +3,7 @@ layout: default
 title: 首页
 ---
 
-# 半夏叁分<span class="seal">雅</span>
-
-> 记录生活，分享思考，以文会友。
+> 记录生活，分享成果。
 
 ## 最新文章
 

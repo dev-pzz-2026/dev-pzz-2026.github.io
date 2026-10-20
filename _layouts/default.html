@@ -54,13 +54,9 @@
     }
     @keyframes branch-sway {
       0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(0.8deg); }
+      25% { transform: rotate(1.5deg); }
       50% { transform: rotate(0deg); }
-      75% { transform: rotate(-0.5deg); }
-    }
-    @keyframes branch-sway {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(0.5deg); }
+      75% { transform: rotate(-1deg); }
     }
     nav {
       position: relative;
@@ -206,15 +202,6 @@
         opacity: 0;
       }
     }
-    /* 枝桠微动 */
-    .plum-branch {
-      animation: branch-sway 8s ease-in-out infinite;
-      transform-origin: top right;
-    }
-    @keyframes branch-sway {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(0.5deg); }
-    }
   </style>
 </head>
 <body>
@@ -236,23 +223,37 @@
     {{ content }}
   </main>
   <footer>
-    © {{ site.time | date: "%Y" }} {{ site.author.name }} · 笔墨余生，以文会友
+    © {{ site.time | date: "%Y" }} {{ site.author.name }} · 舍岁余生
   </footer>
 
   <script>
-    // 生成飘落花瓣
+    // 生成飘落花瓣和雪花
     (function() {
       const container = document.getElementById('petals');
-      const petalCount = 15;
+      const petalCount = 10;
+      const snowCount = 5;
+      const symbols = ['❀', '❁', '❃'];
       for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('div');
         petal.className = 'petal';
-        petal.textContent = '❀';
+        petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
         petal.style.left = Math.random() * 100 + '%';
         petal.style.animationDuration = (8 + Math.random() * 8) + 's';
         petal.style.animationDelay = (Math.random() * 10) + 's';
         petal.style.fontSize = (10 + Math.random() * 10) + 'px';
         container.appendChild(petal);
+      }
+      for (let i = 0; i < snowCount; i++) {
+        const snow = document.createElement('div');
+        snow.className = 'petal';
+        snow.textContent = '❄';
+        snow.style.left = Math.random() * 100 + '%';
+        snow.style.animationDuration = (10 + Math.random() * 10) + 's';
+        snow.style.animationDelay = (Math.random() * 15) + 's';
+        snow.style.fontSize = (8 + Math.random() * 8) + 'px';
+        snow.style.color = '#ccc';
+        snow.style.opacity = '0.6';
+        container.appendChild(snow);
       }
     })();
   </script>

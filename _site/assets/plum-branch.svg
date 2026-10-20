@@ -1,0 +1,51 @@
+<svg class="plum-branch" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ink">
+      <feGaussianBlur stdDeviation="0.5"/>
+    </filter>
+  </defs>
+  <!-- 主枝干 -->
+  <path d="M 500 0 Q 420 80 380 140 Q 350 190 310 220" 
+        stroke="#3a3530" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
+  <!-- 分枝1 -->
+  <path d="M 380 140 Q 330 120 280 110" 
+        stroke="#3a3530" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
+  <!-- 分枝2 -->
+  <path d="M 350 180 Q 310 175 270 185" 
+        stroke="#3a3530" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#ink)"/>
+  <!-- 分枝3 -->
+  <path d="M 420 80 Q 400 100 390 120" 
+        stroke="#3a3530" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#ink)"/>
+  <!-- 分枝4 -->
+  <path d="M 310 220 Q 290 240 270 260" 
+        stroke="#3a3530" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
+  <!-- 梅花 -->
+  <g filter="url(#ink)">
+    <!-- 大花 -->
+    <g transform="translate(380,140)">
+      <circle r="12" fill="#e8c8c8" opacity="0.9"/>
+      <circle r="4" fill="#b33a3a" opacity="0.8"/>
+    </g>
+    <g transform="translate(280,110)">
+      <circle r="10" fill="#e8c8c8" opacity="0.85"/>
+      <circle r="3.5" fill="#b33a3a" opacity="0.8"/>
+    </g>
+    <g transform="translate(270,185)">
+      <circle r="11" fill="#e8c8c8" opacity="0.9"/>
+      <circle r="4" fill="#b33a3a" opacity="0.8"/>
+    </g>
+    <g transform="translate(390,120)">
+      <circle r="9" fill="#e8c8c8" opacity="0.8"/>
+      <circle r="3" fill="#b33a3a" opacity="0.8"/>
+    </g>
+    <g transform="translate(270,260)">
+      <circle r="8" fill="#e8c8c8" opacity="0.75"/>
+      <circle r="2.5" fill="#b33a3a" opacity="0.8"/>
+    </g>
+    <!-- 小花苞 -->
+    <circle cx="330" cy="160" r="4" fill="#d4a5a5" opacity="0.7"/>
+    <circle cx="350" cy="100" r="3.5" fill="#d4a5a5" opacity="0.65"/>
+    <circle cx="300" cy="200" r="3" fill="#d4a5a5" opacity="0.6"/>
+    <circle cx="400" cy="60" r="3.5" fill="#d4a5a5" opacity="0.65"/>
+  </g>
+</svg>

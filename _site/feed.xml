@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-10-20T18:52:54+08:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">我的个人网站</title><subtitle>记录技术、生活与思考</subtitle><author><name>半夏叁分</name><email>your.email@example.com</email></author><entry><title type="html">我的第一篇博客</title><link href="http://0.0.0.0:4000/2026/10/20/first-post.html" rel="alternate" type="text/html" title="我的第一篇博客" /><published>2026-10-20T10:00:00+08:00</published><updated>2026-10-20T10:00:00+08:00</updated><id>http://0.0.0.0:4000/2026/10/20/first-post</id><content type="html" xml:base="http://0.0.0.0:4000/2026/10/20/first-post.html"><![CDATA[<p>欢迎来到我的个人小屋。</p>
+
+<p>这里是我用 Jekyll 搭建的第一个博客，风格是中式水墨梅花。</p>
+
+<h2 id="为什么写博客">为什么写博客</h2>
+
+<ul>
+  <li>记录生活中的点滴感悟</li>
+  <li>整理思考，输出价值</li>
+  <li>结识同频的朋友</li>
+</ul>
+
+<h2 id="后续计划">后续计划</h2>
+
+<ol>
+  <li>定期更新读书笔记</li>
+  <li>分享技术学习心得</li>
+  <li>记录旅行见闻</li>
+</ol>
+
+<hr />
+
+<p><em>梅花香自苦寒来，笔墨余生以文会友。</em></p>]]></content><author><name>半夏叁分</name><email>your.email@example.com</email></author><category term="随笔" /><category term="写作" /><summary type="html"><![CDATA[欢迎来到我的个人小屋。]]></summary></entry></feed>

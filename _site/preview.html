@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文人小屋 · 首页</title>
+  <style>
+    :root {
+      --ink: #2c2c2c;
+      --ink-light: #5a5a5a;
+      --ink-lighter: #999;
+      --paper: #f5f0e8;
+      --paper-dark: #ede6d8;
+      --red: #b33a3a;
+      --plum: #d4a5a5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", Georgia, serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 2;
+      font-size: 16px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(180,160,130,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(180,160,130,0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .plum-branch {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 420px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.9;
+      mix-blend-mode: multiply;
+      -webkit-mask-image: radial-gradient(ellipse 120% 100% at 100% 0%, black 40%, transparent 100%);
+      mask-image: radial-gradient(ellipse 120% 100% at 100% 0%, black 40%, transparent 100%);
+      transform-origin: 100% 0%;
+      animation: branch-sway 6s ease-in-out infinite;
+    }
+    @keyframes branch-sway {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(0.8deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-0.5deg); }
+    }
+    nav {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--paper-dark);
+    }
+    nav .brand {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+    }
+    nav .links { display: flex; gap: 2rem; }
+    nav .links a {
+      color: var(--ink-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+    nav .links a:hover, nav .links a.active { color: var(--red); }
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2.5rem 0 1rem;
+      letter-spacing: 0.05em;
+    }
+    p { margin-bottom: 1rem; }
+    a { color: var(--red); text-decoration: none; }
+    .seal {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.7rem;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    blockquote {
+      border-left: 2px solid var(--paper-dark);
+      padding-left: 1.2rem;
+      margin: 1.5rem 0;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+    .post-item {
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--paper-dark);
+    }
+    .post-item:last-child { border-bottom: none; }
+    .post-item .title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .post-item .title:hover { color: var(--red); }
+    .post-item .meta {
+      font-size: 0.8rem;
+      color: var(--ink-lighter);
+      margin-top: 0.4rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      color: var(--ink-light);
+      background: var(--paper-dark);
+      padding: 0.1rem 0.6rem;
+      border-radius: 2px;
+      margin-left: 0.6rem;
+    }
+    footer {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      text-align: center;
+      color: var(--ink-lighter);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--paper-dark);
+    }
+    .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -20px;
+      font-size: 14px;
+      color: var(--plum);
+      opacity: 0;
+      animation: petal-fall linear infinite;
+    }
+    @keyframes petal-fall {
+      0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(100vh) translateX(80px) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/plum-branch-converted.svg" alt="" class="plum-branch">
+
+  <div class="petals" id="petals"></div>
+
+  <nav>
+    <a href="index.html" class="brand">半夏叁分<span class="seal">印</span></a>
+    <div class="links">
+      <a href="index.html" class="active">首页</a>
+      <a href="about.html">关于</a>
+      <a href="blog.html">博客</a>
+    </div>
+  </nav>
+  <main>
+    <h1>半夏叁分<span class="seal">雅</span></h1>
+    <blockquote>记录生活，分享思考，以文会友。</blockquote>
+
+    <h2>最新文章</h2>
+    <div class="post-item">
+      <a href="#" class="title">我的第一篇博客</a>
+      <div class="meta">2026年10月20日 <span class="tag">随笔</span><span class="tag">写作</span></div>
+    </div>
+  </main>
+  <footer>
+    © 2026 Your Name · 笔墨余生，以文会友
+  </footer>
+
+  <script>
+    (function() {
+      const container = document.getElementById('petals');
+      for (let i = 0; i < 15; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = '❀';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (8 + Math.random() * 8) + 's';
+        petal.style.animationDelay = (Math.random() * 10) + 's';
+        petal.style.fontSize = (10 + Math.random() * 10) + 'px';
+        container.appendChild(petal);
+      }
+    })();
+  </script>
+</body>
+</html>

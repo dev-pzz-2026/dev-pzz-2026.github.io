@@ -16,8 +16,8 @@ title: 关于
 
 ## 联系
 
-- 邮箱：your.email@example.com
-- GitHub：yourusername
+- 邮箱：941212702@qq.com
+- GitHub：dev-pzz-2026
 
 ---
 
