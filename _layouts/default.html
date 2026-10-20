@@ -113,7 +113,16 @@
       gap: 0.7rem;
       font-size: 0.8rem;
     }
-    .toolbar label { color: var(--ink-lighter); letter-spacing: 0.1em; }
+    .toolbar label {
+      color: var(--ink-lighter);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toolbar select { flex: 1; min-width: 0; }
     .toolbar select, .toolbar button {
       font: inherit;
       font-size: 0.8rem;
@@ -122,17 +131,17 @@
       border: 1px solid var(--paper-dark);
       border-radius: 2px;
       padding: 0.25rem 0.4rem;
-      width: 100%;
       letter-spacing: 0.1em;
       cursor: pointer;
     }
+    .toolbar button { width: 100%; }
     .toolbar button:hover, .toolbar select:hover { border-color: var(--red); color: var(--red); }
     main {
       position: relative;
       z-index: 10;
       max-width: 680px;
-      margin: 0 auto;
-      margin-left: 240px;
+      margin-left: calc(240px + (100% - 240px - 680px) / 2);
+      margin-right: auto;
       padding: 3rem 1.5rem;
     }
     h1 {
@@ -222,8 +231,8 @@
       position: relative;
       z-index: 10;
       max-width: 680px;
-      margin: 0 auto;
-      margin-left: 240px;
+      margin-left: calc(240px + (100% - 240px - 680px) / 2);
+      margin-right: auto;
       padding: 2rem 1.5rem 3rem;
       text-align: center;
       color: var(--ink-lighter);
