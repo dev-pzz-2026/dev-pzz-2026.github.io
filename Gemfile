@@ -4,5 +4,6 @@ gem "minima"
 gem "jekyll-feed"
 gem "jekyll-sitemap"
 gem "jekyll-paginate"
+gem "kramdown-parser-gfm"
 group :jekyll_plugins do
 end
