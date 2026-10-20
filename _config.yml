@@ -1,0 +1,27 @@
+# 站点配置
+title: 我的个人网站
+description: 记录技术、生活与思考
+url: "https://yourusername.github.io"
+baseurl: ""
+
+# 作者信息
+author:
+  name: 半夏叁分
+  email: your.email@example.com
+  github: yourusername
+
+# 构建设置
+markdown: kramdown
+theme: minima
+paginate: 5
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# 导航菜单
+nav:
+  - Home: /
+  - About: /about/
+  - Blog: /blog/
+  - Projects: /projects/
