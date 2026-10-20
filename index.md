@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 首页
+title: 首页·半夏叁分
 ---
 
 > 记录生活，分享成果。
@@ -8,9 +8,9 @@ title: 首页
 ## 最新文章
 
 <div class="post-list">
-{% for post in site.posts limit: 5 %}
+{% for post in paginator.posts %}
 <div class="post-item">
-  <a href="{{ post.url }}" class="title">{{ post.title }}</a>
+  <a href="{{ post.url | relative_url }}" class="title">{{ post.title }}</a>
   <div class="meta">
     {{ post.date | date: "%Y年%m月%d日" }}
     {% for tag in post.tags %}
@@ -20,3 +20,15 @@ title: 首页
 </div>
 {% endfor %}
 </div>
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination">
+  {% if paginator.previous_page %}
+  <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">← 上一页</a>
+  {% endif %}
+  <span class="page-info">第 {{ paginator.page }} / {{ paginator.total_pages }} 页</span>
+  {% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path | relative_url }}" class="next">下一页 →</a>
+  {% endif %}
+</nav>
+{% endif %}

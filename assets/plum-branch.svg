@@ -1,51 +1,69 @@
-<svg class="plum-branch" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360">
   <defs>
-    <filter id="ink">
-      <feGaussianBlur stdDeviation="0.5"/>
-    </filter>
+    <g id="mp">
+      <ellipse cx="0" cy="-11" rx="6.8" ry="10.2"/>
+    </g>
+    <g id="mflower">
+      <g fill="#d4a5a5">
+        <use href="#mp"/>
+        <use href="#mp" transform="rotate(72)"/>
+        <use href="#mp" transform="rotate(144)"/>
+        <use href="#mp" transform="rotate(216)"/>
+        <use href="#mp" transform="rotate(288)"/>
+      </g>
+      <g stroke="#b33a3a" stroke-width="0.9" stroke-linecap="round">
+        <path d="M0 0 L0 -15"/><path d="M0 0 L9 -12"/><path d="M0 0 L14 -4"/>
+        <path d="M0 0 L11 9"/><path d="M0 0 L3 15"/><path d="M0 0 L-8 12"/>
+        <path d="M0 0 L-14 4"/><path d="M0 0 L-11 -10"/>
+      </g>
+      <g fill="#b33a3a">
+        <circle cx="0" cy="-15" r="1.2"/><circle cx="9" cy="-12" r="1.2"/>
+        <circle cx="14" cy="-4" r="1.2"/><circle cx="11" cy="9" r="1.2"/>
+        <circle cx="3" cy="15" r="1.2"/><circle cx="-8" cy="12" r="1.2"/>
+        <circle cx="-14" cy="4" r="1.2"/><circle cx="-11" cy="-10" r="1.2"/>
+      </g>
+      <circle r="2.6" fill="#8a2f2f"/>
+    </g>
+    <g id="mbud">
+      <ellipse rx="4" ry="5.6" fill="#c78d8d"/>
+      <path d="M -2.4 4 Q 0 8 2.4 4" fill="none" stroke="#4a4038" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
   </defs>
-  <!-- 主枝干 -->
-  <path d="M 500 0 Q 420 80 380 140 Q 350 190 310 220" 
-        stroke="#3a3530" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
-  <!-- 分枝1 -->
-  <path d="M 380 140 Q 330 120 280 110" 
-        stroke="#3a3530" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
-  <!-- 分枝2 -->
-  <path d="M 350 180 Q 310 175 270 185" 
-        stroke="#3a3530" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#ink)"/>
-  <!-- 分枝3 -->
-  <path d="M 420 80 Q 400 100 390 120" 
-        stroke="#3a3530" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#ink)"/>
-  <!-- 分枝4 -->
-  <path d="M 310 220 Q 290 240 270 260" 
-        stroke="#3a3530" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#ink)"/>
-  <!-- 梅花 -->
-  <g filter="url(#ink)">
-    <!-- 大花 -->
-    <g transform="translate(380,140)">
-      <circle r="12" fill="#e8c8c8" opacity="0.9"/>
-      <circle r="4" fill="#b33a3a" opacity="0.8"/>
-    </g>
-    <g transform="translate(280,110)">
-      <circle r="10" fill="#e8c8c8" opacity="0.85"/>
-      <circle r="3.5" fill="#b33a3a" opacity="0.8"/>
-    </g>
-    <g transform="translate(270,185)">
-      <circle r="11" fill="#e8c8c8" opacity="0.9"/>
-      <circle r="4" fill="#b33a3a" opacity="0.8"/>
-    </g>
-    <g transform="translate(390,120)">
-      <circle r="9" fill="#e8c8c8" opacity="0.8"/>
-      <circle r="3" fill="#b33a3a" opacity="0.8"/>
-    </g>
-    <g transform="translate(270,260)">
-      <circle r="8" fill="#e8c8c8" opacity="0.75"/>
-      <circle r="2.5" fill="#b33a3a" opacity="0.8"/>
-    </g>
-    <!-- 小花苞 -->
-    <circle cx="330" cy="160" r="4" fill="#d4a5a5" opacity="0.7"/>
-    <circle cx="350" cy="100" r="3.5" fill="#d4a5a5" opacity="0.65"/>
-    <circle cx="300" cy="200" r="3" fill="#d4a5a5" opacity="0.6"/>
-    <circle cx="400" cy="60" r="3.5" fill="#d4a5a5" opacity="0.65"/>
+
+  <!-- 枝干 -->
+  <g fill="none" stroke="#4a4038" stroke-linecap="round">
+    <path d="M 496 -6 C 452 28 430 66 398 100 C 366 134 342 146 302 170 C 262 194 238 204 200 224 C 162 244 128 254 92 272" stroke-width="9"/>
+    <path d="M 398 100 C 382 126 376 152 368 184" stroke-width="4.5"/>
+    <path d="M 330 154 C 318 128 314 106 300 84" stroke-width="4"/>
+    <path d="M 252 196 C 246 220 242 238 228 260" stroke-width="3.5"/>
+    <path d="M 150 244 C 138 224 132 210 118 194" stroke-width="3"/>
+    <path d="M 448 36 C 452 54 452 66 448 84" stroke-width="3"/>
+    <path d="M 368 184 C 360 202 350 212 340 228" stroke-width="2.4"/>
+    <path d="M 302 170 C 280 172 264 176 246 186" stroke-width="2.6"/>
   </g>
+
+  <!-- 苔点 -->
+  <g fill="#4a4038" opacity="0.8">
+    <circle cx="420" cy="70" r="1.6"/>
+    <circle cx="352" cy="140" r="1.5"/>
+    <circle cx="276" cy="186" r="1.5"/>
+    <circle cx="180" cy="234" r="1.4"/>
+    <circle cx="440" cy="52" r="1.4"/>
+  </g>
+
+  <!-- 花蕾 -->
+  <use href="#mbud" transform="translate(448 84) rotate(18)"/>
+  <use href="#mbud" transform="translate(300 84) rotate(-12)"/>
+  <use href="#mbud" transform="translate(340 228) rotate(24)"/>
+  <use href="#mbud" transform="translate(228 260) rotate(-18)"/>
+  <use href="#mbud" transform="translate(118 194) rotate(10)"/>
+
+  <!-- 花朵 -->
+  <use href="#mflower" transform="translate(460 22) rotate(12)"/>
+  <use href="#mflower" transform="translate(398 100) rotate(-8) scale(1.05)"/>
+  <use href="#mflower" transform="translate(330 154) rotate(20) scale(0.92)" opacity="0.95"/>
+  <use href="#mflower" transform="translate(252 196) rotate(-15)"/>
+  <use href="#mflower" transform="translate(150 244) rotate(8) scale(0.95)" opacity="0.92"/>
+  <use href="#mflower" transform="translate(92 272) rotate(-20) scale(0.88)" opacity="0.88"/>
+  <use href="#mflower" transform="translate(368 184) rotate(30) scale(0.9)" opacity="0.95"/>
 </svg>
