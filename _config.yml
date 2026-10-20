@@ -2,7 +2,8 @@
 title: 半夏叁分
 description: 记录技术、生活与思考
 url: "https://dev-pzz-2026.github.io"
-# 若部署到项目页 https://dev-pzz-2026.github.io/<仓库名>/，需将下行改为 "/<仓库名>"
+# 用户站仓库 dev-pzz-2026.github.io 部署在根路径，baseurl 保持为空；
+# 若将来部署到项目页子路径，需改为 "/<仓库名>"
 baseurl: ""
 
 # 作者信息
