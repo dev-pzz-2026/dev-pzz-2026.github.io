@@ -18,6 +18,8 @@ kramdown:
   input: GFM
   auto_ids: true
 theme: minima
+# 固定 /YYYY/MM/DD/slug.html，栏目(categories)不进 URL，避免归类后旧链接失效
+permalink: "/:year/:month/:day/:title:output_ext"
 paginate: 5
 paginate_path: "/page/:num/"
 plugins:
