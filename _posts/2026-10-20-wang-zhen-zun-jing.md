@@ -2,7 +2,7 @@
 layout: default
 title: "望诊遵经"
 date: 2026-10-20 20:40:00 +0800
-tags: [医]
+categories: [医]
 ---
 
 # 望诊遵经

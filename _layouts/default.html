@@ -103,6 +103,14 @@
       color: var(--red);
       border-left-color: var(--red);
     }
+    nav .links .nav-label {
+      color: var(--ink-lighter);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      padding-left: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    nav .links a.col-link { padding-left: 1.4rem; font-size: 0.9rem; }
     /* 阅读工具栏 */
     .toolbar {
       margin-top: auto;
@@ -315,6 +323,7 @@
         right: -50px;
       }
       .toolbar { display: none; }
+      nav .links .nav-label, nav .links a.col-link { display: none; }
     }
     /* 打印样式 */
     @media print {
@@ -343,6 +352,10 @@
       <a href="{{ '/' | relative_url }}" {% if page.url == "/" %}class="active"{% endif %}>首页</a>
       <a href="{{ '/about/' | relative_url }}" {% if page.url contains "/about/" %}class="active"{% endif %}>关于</a>
       <a href="{{ '/blog/' | relative_url }}" {% if page.url contains "/blog/" %}class="active"{% endif %}>博客</a>
+      <span class="nav-label">栏目</span>
+      <a href="{{ '/columns/#%E5%8C%BB' | relative_url }}" class="col-link" {% if page.url contains "/columns/" %}data-col="医"{% endif %}>医</a>
+      <a href="{{ '/columns/#%E5%B7%A5' | relative_url }}" class="col-link">工</a>
+      <a href="{{ '/columns/#%E8%89%BA' | relative_url }}" class="col-link">艺</a>
     </div>
     <div class="toolbar">
       <label>字体

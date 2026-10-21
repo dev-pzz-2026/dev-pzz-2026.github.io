@@ -2,7 +2,7 @@
 layout: default
 title: "濒湖脉学"
 date: 2026-10-20 20:20:00 +0800
-tags: [医]
+categories: [医]
 ---
 
 # 濒湖脉学
