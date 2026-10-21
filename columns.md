@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 栏目
+permalink: /columns/
 ---
 
 # 栏目
