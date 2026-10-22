@@ -229,6 +229,20 @@
       margin-left: 0.6rem;
       letter-spacing: 0.05em;
     }
+    /* 行内代码：用于方书类文章的类别/治法标注 */
+    code {
+      font-family: "KaiTi", "STKaiti", serif;
+      font-size: 0.76em;
+      font-weight: 400;
+      color: var(--ink-light);
+      background: var(--paper-dark);
+      border: 1px solid rgba(180, 160, 130, 0.28);
+      border-radius: 2px;
+      padding: 0.08rem 0.45rem;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    pre code { white-space: pre; display: block; overflow-x: auto; }
     blockquote {
       border-left: 2px solid var(--paper-dark);
       padding-left: 1.2rem;
