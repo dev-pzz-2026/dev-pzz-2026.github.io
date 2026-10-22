@@ -144,6 +144,48 @@
     }
     .toolbar button { width: 100%; }
     .toolbar button:hover, .toolbar select:hover { border-color: var(--red); color: var(--red); }
+    .toolbar input[type="search"] {
+      font: inherit;
+      font-size: 0.8rem;
+      color: var(--ink);
+      background: transparent;
+      border: 1px solid var(--paper-dark);
+      border-radius: 2px;
+      padding: 0.25rem 0.4rem;
+      letter-spacing: 0.05em;
+      flex: 1;
+      min-width: 0;
+    }
+    .toolbar input[type="search"]:focus { outline: none; border-color: var(--red); }
+    #searchMeta { font-size: 0.72rem; color: var(--ink-lighter); letter-spacing: 0.05em; }
+    .search-results {
+      max-height: 32vh;
+      overflow-y: auto;
+      border: 1px solid var(--paper-dark);
+      border-radius: 2px;
+      background: var(--paper);
+    }
+    .search-results .sr-item {
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px dashed var(--paper-dark);
+      cursor: pointer;
+      line-height: 1.6;
+    }
+    .search-results .sr-item:last-child { border-bottom: none; }
+    .search-results .sr-item:hover { background: var(--paper-dark); }
+    .search-results .sr-disabled { cursor: default; }
+    .search-results .sr-title { color: var(--ink); font-weight: 600; }
+    .search-results .sr-item:hover .sr-title { color: var(--red); }
+    .search-results .sr-snip { color: var(--ink-lighter); font-size: 0.95em; }
+    .search-results .sr-snip b { color: var(--red); font-weight: 600; }
+    /* 检索命中高亮 */
+    mark {
+      background: rgba(212, 165, 165, 0.5);
+      color: inherit;
+      padding: 0 0.12em;
+      border-radius: 1px;
+    }
+    .sr-target { color: var(--red); }
     main {
       position: relative;
       z-index: 10;
@@ -386,6 +428,11 @@
       <a href="{{ '/columns/#%E8%89%BA' | relative_url }}" class="col-link">艺</a>
     </div>
     <div class="toolbar">
+      <label>检索
+        <input id="searchBox" type="search" placeholder="本页内容" autocomplete="off" spellcheck="false" aria-label="本页内容检索">
+      </label>
+      <div id="searchMeta"></div>
+      <div id="searchResults" class="search-results" hidden></div>
       <label>字体
         <select id="fontSel" aria-label="字体">
           <option value="cn">中文简体</option>
@@ -411,6 +458,7 @@
   </footer>
 
   <script src="{{ '/assets/opencc.full.js' | relative_url }}"></script>
+  <script src="{{ '/assets/page-search.js' | relative_url }}"></script>
   <script>
     // 阅读偏好：字体（简体/繁体/仿宋GB2312）、字号、打印
     (function() {
@@ -443,6 +491,8 @@
         convertMain(f === "tw" ? "tw" : "cn");
         document.getElementById("fontSel").value = f;
         document.getElementById("sizeSel").value = prefs.size;
+        // 内容被整体还原/改写后，重挂检索高亮
+        if (window.__pageSearch) window.__pageSearch.refresh();
       }
 
       document.getElementById("fontSel").addEventListener("change", function () {
