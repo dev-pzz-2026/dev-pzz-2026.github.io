@@ -1,0 +1,450 @@
+---
+layout: default
+title: 诗词·诗
+permalink: /poetry/
+---
+
+<style>
+  .poetry-wrap { margin-top: 1rem; }
+  .filter-bar {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--paper);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--paper-dark);
+  }
+  .filter-row {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    align-items: center; margin-bottom: 0.5rem;
+  }
+  .filter-row:last-child { margin-bottom: 0; }
+  .filter-label {
+    font-size: 0.75rem; color: var(--ink-lighter);
+    letter-spacing: 0.2em; margin-right: 0.3rem;
+  }
+  .fbtn {
+    font-size: 0.8rem; padding: 0.2rem 0.8rem;
+    border: 1px solid rgba(180,160,130,0.5); border-radius: 2px;
+    background: transparent; color: var(--ink-light);
+    cursor: pointer; letter-spacing: 0.08em; transition: all 0.2s;
+  }
+  .fbtn:hover { border-color: var(--red); color: var(--red); }
+  .fbtn.active { background: var(--red); color: #fff; border-color: var(--red); }
+  .fselect {
+    font: inherit; font-size: 0.82rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(180,160,130,0.5); border-radius: 2px;
+    background: transparent; color: var(--ink);
+    letter-spacing: 0.05em; cursor: pointer;
+  }
+  .fselect:focus { outline: none; border-color: var(--red); }
+  #searchBox {
+    font: inherit; font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgba(180,160,130,0.5); border-radius: 2px;
+    background: transparent; color: var(--ink);
+    width: 180px; letter-spacing: 0.05em;
+  }
+  #searchBox:focus { outline: none; border-color: var(--red); }
+  .count-tip {
+    font-size: 0.75rem; color: var(--ink-lighter);
+    letter-spacing: 0.05em; margin-left: auto;
+  }
+  /* 全局朗诵 */
+  .filter-toggle {
+    display: none;
+    font: inherit; font-size: 0.85rem;
+    padding: 0.3rem 1rem;
+    border: 1px solid rgba(180,160,130,0.5); border-radius: 2px;
+    background: transparent; color: var(--ink-light);
+    cursor: pointer; letter-spacing: 0.15em;
+    margin-bottom: 0.5rem; width: 100%;
+  }
+  .filter-toggle:hover { border-color: var(--red); color: var(--red); }
+  .global-bar {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.5rem 0; margin-bottom: 0.5rem;
+    border-bottom: 1px dashed rgba(180,160,130,0.3);
+  }
+  .global-btn {
+    font: inherit; font-size: 0.85rem;
+    padding: 0.3rem 1.2rem;
+    border: 1px solid var(--red); border-radius: 2px;
+    background: transparent; color: var(--red);
+    cursor: pointer; letter-spacing: 0.15em; transition: all 0.2s;
+  }
+  .global-btn:hover { background: var(--red); color: #fff; }
+  .global-btn.playing {
+    background: var(--red); color: #fff;
+  }
+  .global-status {
+    font-size: 0.78rem; color: var(--ink-lighter);
+    letter-spacing: 0.08em;
+  }
+  /* 卡片 */
+  .poem-card {
+    padding: 1.4rem 0.5rem;
+    border-bottom: 1px dashed rgba(180,160,130,0.3);
+  }
+  .poem-card.current-playing {
+    background: rgba(160,60,60,0.04);
+    border-left: 2px solid var(--red);
+    padding-left: 1rem;
+  }
+  .poem-head {
+    display: flex; align-items: baseline; flex-wrap: wrap;
+    gap: 0.6rem; margin-bottom: 0.6rem;
+  }
+  .poem-title {
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.08em;
+  }
+  .poem-meta {
+    font-size: 0.8rem; color: var(--ink-lighter);
+    letter-spacing: 0.08em;
+  }
+  .stage-tag {
+    display: inline-block; font-size: 0.7rem;
+    padding: 0.05rem 0.5rem; border-radius: 2px;
+    margin-right: 0.4rem; letter-spacing: 0.1em;
+  }
+  .stage-小学 { background: rgba(180,200,160,0.3); color: #4a6b3a; }
+  .stage-初中 { background: rgba(200,180,140,0.3); color: #8a6a2a; }
+  .stage-高中 { background: rgba(200,160,160,0.3); color: #a04a4a; }
+  .stage-其他 { background: rgba(160,160,180,0.3); color: #5a5a8a; }
+  .poem-content {
+    font-size: 1rem; line-height: 2.4;
+    color: var(--ink); letter-spacing: 0.05em;
+    white-space: pre-wrap;
+  }
+  .poem-content ruby { ruby-align: center; margin: 0 0.02em; }
+  .poem-content rt {
+    font-size: 0.55rem; color: var(--ink-lighter);
+    letter-spacing: 0; font-family: "KaiTi", "STKaiti", serif;
+  }
+  .poem-content .famous {
+    color: var(--red); font-weight: 600;
+    border-bottom: 1px dashed rgba(160,60,60,0.4);
+    padding: 0 0.1em;
+  }
+  .poem-actions {
+    margin-top: 0.7rem; display: flex; gap: 0.6rem; align-items: center;
+  }
+  .speak-btn {
+    font: inherit; font-size: 0.78rem;
+    padding: 0.25rem 0.8rem;
+    border: 1px solid rgba(180,160,130,0.5); border-radius: 2px;
+    background: transparent; color: var(--ink-light);
+    cursor: pointer; letter-spacing: 0.1em; transition: all 0.2s;
+  }
+  .speak-btn:hover { border-color: var(--red); color: var(--red); }
+  .speak-btn.speaking {
+    background: var(--red); color: #fff; border-color: var(--red);
+  }
+  .empty-tip {
+    padding: 2rem 0; text-align: center;
+    color: var(--ink-lighter); font-size: 0.9rem; letter-spacing: 0.1em;
+  }
+  @media (max-width: 768px) {
+    /* 筛选栏紧凑：全局朗诵条压成一行 */
+    .filter-bar { padding: 0.4rem 0; position: static; }
+    .global-bar { padding: 0.2rem 0; margin-bottom: 0.3rem; gap: 0.4rem; }
+    .global-btn { font-size: 0.75rem; padding: 0.2rem 0.8rem; letter-spacing: 0.1em; }
+    .global-status { font-size: 0.7rem; }
+    .filter-row { gap: 0.3rem; margin-bottom: 0.3rem; }
+    .filter-label { font-size: 0.65rem; letter-spacing: 0.1em; margin-right: 0.1rem; }
+    .fbtn { font-size: 0.72rem; padding: 0.15rem 0.55rem; letter-spacing: 0.05em; }
+    .fselect { font-size: 0.72rem; padding: 0.15rem 0.4rem; flex: 1; min-width: 0; }
+    #searchBox { width: 100%; font-size: 0.78rem; padding: 0.2rem 0.4rem; }
+    .count-tip { margin-left: 0; width: 100%; font-size: 0.7rem; }
+    /* 卡片紧凑 */
+    .poem-card { padding: 0.8rem 0.2rem; }
+    .poem-card.current-playing { padding-left: 0.5rem; }
+    .poem-title { font-size: 1rem; }
+    .poem-meta { font-size: 0.72rem; }
+    .poem-content { font-size: 0.92rem; line-height: 2.0; }
+    .poem-content rt { font-size: 0.5rem; }
+    .poem-head { margin-bottom: 0.3rem; gap: 0.4rem; }
+    .poem-actions { margin-top: 0.4rem; }
+    .speak-btn { font-size: 0.7rem; padding: 0.15rem 0.6rem; }
+  }
+</style>
+
+<div class="poetry-wrap">
+  <button class="filter-toggle" id="filterToggle">☰ 筛选 / 朗诵</button>
+  <div class="filter-bar" id="filterBar">
+    <div class="global-bar">
+      <button class="global-btn" id="globalBtn">▶ 全局朗诵</button>
+      <span class="global-status" id="globalStatus"></span>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">学段</span>
+      <button class="fbtn stage-filter active" data-stage="all">全部</button>
+      <button class="fbtn stage-filter" data-stage="小学">小学</button>
+      <button class="fbtn stage-filter" data-stage="初中">初中</button>
+      <button class="fbtn stage-filter" data-stage="高中">高中</button>
+      <button class="fbtn stage-filter" data-stage="其他">其他</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">标签</span>
+      <select class="fselect" id="tagSelect">
+        <option value="">全部</option>
+      </select>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">检索</span>
+      <input type="search" id="searchBox" placeholder="标题 / 作者" autocomplete="off">
+      <span class="count-tip" id="countTip"></span>
+    </div>
+  </div>
+
+  <div id="poemList">
+    <div class="empty-tip">诗卷整理中……</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var allPoems = [];
+  var curStage = 'all';
+  var curTag = '';
+  var curKw = '';
+  var curFiltered = [];   // 当前筛选后的列表（用于全局朗诵）
+  var curSingleIdx = -1;   // 单首朗读时列表中的下标
+  var queue = [];          // 全局朗诵队列
+  var qIdx = -1;           // 当前队列位置
+  var isGlobalPlaying = false;
+
+  var listEl = document.getElementById('poemList');
+  var countEl = document.getElementById('countTip');
+  var tagSel = document.getElementById('tagSelect');
+  var searchEl = document.getElementById('searchBox');
+  var globalBtn = document.getElementById('globalBtn');
+  var globalStatus = document.getElementById('globalStatus');
+
+  var synth = window.speechSynthesis;
+  var zhVoice = null;
+
+  // 微信内置浏览器检测与兼容
+  var ua = navigator.userAgent.toLowerCase();
+  var isWeChat = /micromessenger/i.test(ua);
+  var isSupportTTS = !!(synth && typeof SpeechSynthesisUtterance !== 'undefined');
+
+  // 微信内 TTS 不可用提示横幅
+  if (isWeChat && !isSupportTTS) {
+    var banner = document.createElement('div');
+    banner.style.cssText = 'padding:0.6rem 0.8rem;margin:0.5rem 0;background:rgba(160,60,60,0.08);border:1px dashed rgba(160,60,60,0.4);border-radius:2px;font-size:0.8rem;color:var(--red);line-height:1.6;letter-spacing:0.05em;';
+    banner.innerHTML = '📢 微信内置浏览器暂不支持语音朗读<br>请点击右上角「···」→ 选择「在浏览器打开」，即可使用朗读功能。';
+    var filterBar = document.querySelector('.filter-bar');
+    if (filterBar) filterBar.parentNode.insertBefore(banner, filterBar.nextSibling);
+    globalBtn.disabled = true;
+    globalBtn.style.opacity = '0.5';
+    globalBtn.style.cursor = 'not-allowed';
+    globalStatus.textContent = '';
+  } else if (isWeChat && isSupportTTS) {
+    globalStatus.textContent = '微信内朗读模式（如无声请在浏览器打开）';
+  }
+  function pickVoice() {
+    if (!synth) return;
+    var vs = synth.getVoices();
+    zhVoice = vs.find(function (v) { return /zh[-_]CN|zh[-_]Hans|Chinese/i.test(v.lang); }) ||
+              vs.find(function (v) { return v.lang && v.lang.indexOf('zh') === 0; }) || null;
+  }
+  if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
+
+  function stopAll() {
+    if (synth) synth.cancel();
+    queue = []; qIdx = -1;
+    isGlobalPlaying = false;
+    curSingleIdx = -1;
+    globalBtn.classList.remove('playing');
+    globalBtn.textContent = '▶ 全局朗诵';
+    globalStatus.textContent = '';
+    document.querySelectorAll('.speak-btn.speaking').forEach(function (b) {
+      b.classList.remove('speaking'); b.textContent = '朗读';
+    });
+    document.querySelectorAll('.poem-card.current-playing').forEach(function (c) {
+      c.classList.remove('current-playing');
+    });
+  }
+
+  function makeUtterance(text, onEnd) {
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN'; u.rate = 0.85; u.pitch = 1;
+    if (zhVoice) u.voice = zhVoice;
+    var startedAt = Date.now();
+    u.onend = function () {
+      var dur = Date.now() - startedAt;
+      // 微信 X5 无声检测：<1.5 秒就结束 = 无声
+      if (isWeChat && dur < 1500) {
+        globalStatus.textContent = '微信内朗读无声，请点右上角···在浏览器打开';
+      }
+      onEnd();
+    };
+    u.onerror = onEnd;
+    return u;
+  }
+
+  function poemText(p) {
+    return p.title + '，' + p.dynasty + '，' + p.author + '。' + p.content;
+  }
+
+  // 单首朗读
+  function speakSingle(p, btn, listIdx) {
+    if (!isSupportTTS) {
+      globalStatus.textContent = isWeChat
+        ? '微信内不支持朗读，请点右上角···在浏览器打开'
+        : '当前浏览器不支持语音朗读';
+      return;
+    }
+    if (curSingleIdx === listIdx) { stopAll(); return; }
+    stopAll();
+    curSingleIdx = listIdx;
+    var u = makeUtterance(poemText(p), function () {
+      btn.classList.remove('speaking'); btn.textContent = '朗读';
+      btn.closest('.poem-card').classList.remove('current-playing');
+      curSingleIdx = -1;
+    });
+    btn.classList.add('speaking'); btn.textContent = '停止';
+    btn.closest('.poem-card').classList.add('current-playing');
+    synth.speak(u);
+  }
+
+  // 全局朗诵：按 curFiltered 顺序
+  function startGlobal() {
+    if (!isSupportTTS) {
+      globalStatus.textContent = isWeChat
+        ? '微信内不支持朗读，请点右上角···在浏览器打开'
+        : '当前浏览器不支持语音朗读';
+      return;
+    }
+    if (isGlobalPlaying) { stopAll(); return; }
+    if (curFiltered.length === 0) { globalStatus.textContent = '当前无可朗诵诗篇'; return; }
+    queue = curFiltered.slice();
+    qIdx = 0;
+    isGlobalPlaying = true;
+    globalBtn.classList.add('playing');
+    globalBtn.textContent = '■ 停止朗诵';
+    playNext();
+  }
+
+  function playNext() {
+    if (!isGlobalPlaying || qIdx >= queue.length) { stopAll(); return; }
+    var p = queue[qIdx];
+    globalStatus.textContent = '正在朗读 第 ' + (qIdx + 1) + ' / ' + queue.length + ' 首：《' + p.title + '》';
+    // 高亮当前卡片
+    document.querySelectorAll('.poem-card.current-playing').forEach(function (c) {
+      c.classList.remove('current-playing');
+    });
+    var cards = listEl.querySelectorAll('.poem-card');
+    if (cards[qIdx]) {
+      cards[qIdx].classList.add('current-playing');
+      cards[qIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    var u = makeUtterance(poemText(p), function () {
+      qIdx++;
+      if (qIdx < queue.length) {
+        playNext();
+      } else {
+        globalStatus.textContent = '朗诵完毕，共 ' + queue.length + ' 首';
+        stopAll();
+      }
+    });
+    synth.speak(u);
+  }
+
+  function getFiltered() {
+    return allPoems.filter(function (p) {
+      if (curStage !== 'all' && p.stage !== curStage) return false;
+      if (curTag && (p.tags || []).indexOf(curTag) < 0) return false;
+      if (curKw) {
+        var kw = curKw.toLowerCase();
+        if (p.title.toLowerCase().indexOf(kw) < 0 &&
+            p.author.toLowerCase().indexOf(kw) < 0) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderTagOptions() {
+    var tags = {};
+    allPoems.forEach(function (p) {
+      (p.tags || []).forEach(function (t) { tags[t] = (tags[t] || 0) + 1; });
+    });
+    var keys = Object.keys(tags).sort();
+    tagSel.innerHTML = '<option value="">全部（' + allPoems.length + '）</option>';
+    keys.forEach(function (t) {
+      var opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t + '（' + tags[t] + '）';
+      if (curTag === t) opt.selected = true;
+      tagSel.appendChild(opt);
+    });
+  }
+
+  function render() {
+    curFiltered = getFiltered();
+    countEl.textContent = '共 ' + curFiltered.length + ' 首';
+    if (curFiltered.length === 0) {
+      listEl.innerHTML = '<div class="empty-tip">未寻得相应诗篇，请更换筛选条件。</div>';
+      return;
+    }
+    listEl.innerHTML = '';
+    curFiltered.forEach(function (p, i) {
+      var card = document.createElement('div');
+      card.className = 'poem-card';
+      card.innerHTML =
+        '<div class="poem-head">' +
+          '<span class="poem-title">' + p.title + '</span>' +
+          '<span class="poem-meta">' + p.dynasty + '·' + p.author + '</span>' +
+        '</div>' +
+        '<div class="poem-head">' +
+          '<span class="stage-tag stage-' + p.stage + '">' + p.stage + '</span>' +
+          '<span class="poem-meta">' + p.grade + ' · ' + p.genre + '</span>' +
+        '</div>' +
+        '<div class="poem-content">' + (p.content_html || p.content) + '</div>' +
+        '<div class="poem-actions">' +
+          '<button class="speak-btn">朗读</button>' +
+        '</div>';
+      var btn = card.querySelector('.speak-btn');
+      btn.addEventListener('click', function () { speakSingle(p, btn, i); });
+      listEl.appendChild(card);
+    });
+  }
+
+  // 学段
+  document.querySelectorAll('.stage-filter').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.stage-filter').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      curStage = b.dataset.stage;
+      stopAll();
+      render();
+    });
+  });
+  // 标签下拉
+  tagSel.addEventListener('change', function () {
+    curTag = this.value;
+    stopAll();
+    render();
+  });
+  // 搜索
+  searchEl.addEventListener('input', function () {
+    curKw = this.value.trim();
+    stopAll();
+    render();
+  });
+  // 全局朗诵
+  globalBtn.addEventListener('click', startGlobal);
+
+  fetch('{{ "/assets/poetry.json" | relative_url }}')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      allPoems = data || [];
+      renderTagOptions();
+      render();
+    })
+    .catch(function (e) {
+      listEl.innerHTML = '<div class="empty-tip">诗卷加载失败：' + e + '</div>';
+    });
+})();
+</script>

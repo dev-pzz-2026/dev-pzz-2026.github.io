@@ -33,6 +33,8 @@ permalink: /columns/
 
 艺，心性之游。收录读书、随笔与生活记录。
 
+- [🎵 音乐播放器（内置曲库）]({{ '/music/' | relative_url }})
+
 {% assign has_yi = false %}
 {% for post in site.categories["艺"] %}
 - {{ post.date | date: "%Y年%m月%d日" }}　[{{ post.title }}]({{ post.url | relative_url }})

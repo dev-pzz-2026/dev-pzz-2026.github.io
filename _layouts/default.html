@@ -347,27 +347,55 @@
       }
     }
     /* 移动端适配 */
+    .nav-toggle {
+      display: none;
+    }
     @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+        width: 100%;
+        font: inherit;
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        padding: 0.6rem 1rem;
+        background: transparent;
+        color: var(--ink-light);
+        border: 1px solid var(--paper-dark);
+        border-radius: 2px;
+        cursor: pointer;
+        margin: 0.5rem 0;
+      }
+      .nav-toggle:hover { color: var(--red); border-color: var(--red); }
       body > nav {
+        display: none;
         position: relative;
         left: auto;
         top: auto;
         bottom: auto;
         width: 100%;
-        padding: 1.5rem;
+        padding: 1rem 1.5rem;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: baseline;
         border-right: none;
         border-bottom: 1px solid var(--paper-dark);
       }
+      body > nav.open {
+        display: flex;
+      }
       body > nav .brand {
-        margin-bottom: 0;
+        display: none;
+      }
+      body > nav .brand {
+        margin-bottom: 0.5rem;
         font-size: 1.1rem;
       }
       body > nav .links {
         flex-direction: row;
-        gap: 1.5rem;
+        flex-wrap: wrap;
+        gap: 0.8rem 1.2rem;
+        align-items: baseline;
       }
       body > nav .links a {
         padding-left: 0;
@@ -377,6 +405,16 @@
       }
       body > nav .links a:hover, body > nav .links a.active {
         border-left: none;
+      }
+      body > nav .links .nav-label {
+        width: 100%;
+        margin-top: 0.3rem;
+        padding-left: 0;
+        font-size: 0.68rem;
+      }
+      body > nav .links a.col-link {
+        padding-left: 0;
+        font-size: 0.85rem;
       }
       main {
         margin-left: 0;
@@ -393,7 +431,6 @@
         right: -50px;
       }
       .toolbar { display: none; }
-      body > nav .links .nav-label, body > nav .links a.col-link { display: none; }
     }
     /* 打印样式 */
     @media print {
@@ -408,6 +445,11 @@
       .post-item, blockquote, p { break-inside: avoid; }
     }
   </style>
+  {% if page.mathjax %}
+  <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | relative_url }}">
+  <script defer src="{{ '/assets/katex/katex.min.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/katex/contrib/auto-render.min.js' | relative_url }}" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}]});"></script>
+  {% endif %}
 </head>
 <body>
   <!-- 梅花枝桠SVG -->
@@ -416,7 +458,8 @@
   <!-- 飘落花瓣 -->
   <div class="petals" id="petals"></div>
 
-  <nav>
+  <button class="nav-toggle" id="navToggle" aria-label="展开导航">半夏叁分</button>
+  <nav id="mainNav">
     <a href="{{ '/' | relative_url }}" class="brand">半夏叁分<span class="seal">印</span></a>
     <div class="links">
       <a href="{{ '/' | relative_url }}" {% if page.url == "/" %}class="active"{% endif %}>首页</a>
@@ -425,7 +468,8 @@
       <span class="nav-label">栏目</span>
       <a href="{{ '/columns/#%E5%8C%BB' | relative_url }}" class="col-link">医</a>
       <a href="{{ '/columns/#%E5%B7%A5' | relative_url }}" class="col-link">工</a>
-      <a href="{{ '/columns/#%E8%89%BA' | relative_url }}" class="col-link">艺</a>
+      <a href="{{ '/music/' | relative_url }}" class="col-link{% if page.url contains "/music/" %} active{% endif %}">艺</a>
+      <a href="{{ '/poetry/' | relative_url }}" class="col-link{% if page.url contains "/poetry/" %} active{% endif %}">诗</a>
     </div>
     <div class="toolbar">
       <label>检索
@@ -504,6 +548,15 @@
       document.getElementById("printBtn").addEventListener("click", function () {
         window.print();
       });
+      // 移动端导航折叠
+      var navToggle = document.getElementById("navToggle");
+      var mainNav = document.getElementById("mainNav");
+      if (navToggle && mainNav) {
+        navToggle.addEventListener("click", function () {
+          mainNav.classList.toggle("open");
+          navToggle.textContent = mainNav.classList.contains("open") ? "✕ 收起" : "半夏叁分";
+        });
+      }
       apply();
     })();
 
