@@ -450,6 +450,16 @@
   <script defer src="{{ '/assets/katex/katex.min.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/katex/contrib/auto-render.min.js' | relative_url }}" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}]});"></script>
   {% endif %}
+  <!-- 百度统计 -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?a1cbaf34cce2cbe0188306d088b646a9";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
 </head>
 <body>
   <!-- 梅花枝桠SVG -->
