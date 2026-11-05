@@ -444,6 +444,24 @@
       h1, h2, h3 { break-after: avoid; }
       .post-item, blockquote, p { break-inside: avoid; }
     }
+    /* 表格样式：清晰网格线 */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.8em 0 1.2em;
+    }
+    th, td {
+      border: 1px solid #8a8a8a;
+      padding: 6px 10px;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f0f0f0;
+      font-weight: 600;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
   </style>
   {% if page.mathjax %}
   <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | relative_url }}">
