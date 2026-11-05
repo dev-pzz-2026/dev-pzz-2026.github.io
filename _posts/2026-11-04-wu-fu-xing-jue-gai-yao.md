@@ -58,21 +58,18 @@ author: 半夏叁分
     <marker id="arK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c0654f"/></marker>
   </defs>
   <g fill="none" stroke="#4a8f5e" stroke-width="2.5">
-    <path d="M115,330 A205,205 0 0 1 320,125" marker-end="url(#arS)"/>
-    <path d="M320,125 A205,205 0 0 1 525,330" marker-end="url(#arS)"/>
-    <path d="M525,330 A205,205 0 0 1 320,535" marker-end="url(#arS)"/>
-    <path d="M320,535 A205,205 0 0 1 115,330" marker-end="url(#arS)"/>
-    <path d="M320,125 L320,330" marker-end="url(#arS)"/>
-    <path d="M320,330 L525,330" marker-end="url(#arS)"/>
-    <path d="M320,330 L320,535" marker-end="url(#arS)"/>
-    <path d="M320,330 L115,330" marker-end="url(#arS)"/>
+    <path d="M115,262 Q175,205 320,196" marker-end="url(#arS)"/>
+    <path d="M320,196 L320,262" marker-end="url(#arS)"/>
+    <path d="M390,330 L459,330" marker-end="url(#arS)"/>
+    <path d="M477,378 L360,487" marker-end="url(#arS)"/>
+    <path d="M255,530 L183,330" marker-end="url(#arS)"/>
   </g>
   <g fill="none" stroke="#c0654f" stroke-width="2" stroke-dasharray="6 5">
-    <path d="M170,330 L320,330" marker-end="url(#arK)"/>
-    <path d="M320,330 L320,478" marker-end="url(#arK)"/>
-    <path d="M320,478 L320,182" marker-end="url(#arK)"/>
-    <path d="M320,182 L470,330" marker-end="url(#arK)"/>
-    <path d="M470,330 L170,330" marker-end="url(#arK)"/>
+    <path d="M182,330 L252,330" marker-end="url(#arK)"/>
+    <path d="M320,398 L320,469" marker-end="url(#arK)"/>
+    <path d="M372,483 C442,428 442,222 372,182" marker-end="url(#arK)"/>
+    <path d="M372,182 L474,276" marker-end="url(#arK)"/>
+    <path d="M483,376 C402,462 252,462 175,390" marker-end="url(#arK)"/>
   </g>
   <g font-family="'Microsoft YaHei',sans-serif" text-anchor="middle">
     <g>
@@ -109,14 +106,10 @@ author: 半夏叁分
   <g font-size="12" fill="#9a8a74" text-anchor="middle" font-family="'Microsoft YaHei',sans-serif">
     <text x="320" y="82">南·火</text><text x="558" y="334">西·金</text>
     <text x="320" y="588">北·水</text><text x="72" y="334">东·木</text>
-    <text x="320" y="412" font-size="11">中央·土</text>
   </g>
   <g font-family="'Microsoft YaHei',sans-serif" text-anchor="middle">
-    <line x1="168" y1="612" x2="206" y2="612" stroke="#4a8f5e" stroke-width="2.5" marker-end="url(#arS)"/>
-    <text x="222" y="617" font-size="13" fill="#3c6b4c">相生＝化</text>
-    <line x1="300" y1="612" x2="338" y2="612" stroke="#c0654f" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arK)"/>
-    <text x="354" y="617" font-size="13" fill="#8a4538">相克＝除</text>
-    <text x="472" y="617" font-size="12" fill="#9a8a74">化：五味相合 ・ 除：以味除邪</text>
+    <text x="320" y="612" font-size="13" fill="#3c6b4c">化（化咸）：五味相合而化 · 相生即化</text>
+    <text x="320" y="634" font-size="13" fill="#8a4538">除（除温③ / 除寒④）：两味相合以除邪 · 相克即除</text>
   </g>
 </svg>
 
@@ -124,13 +117,13 @@ author: 半夏叁分
 
 
 
-* **实线（外环）为相生**：木→火→土→金→水→木；**虚线（内星）为相克**：木→土→水→火→金→木。
+* **实线（绿）为相生**：木→火、火→土、土→金、金→水、水→木，顺时针一周；**虚线（红）为相克**：木→土、土→水、水→火、火→金、金→木，箭头皆指向所克之脏（如木→土即木克土，自东木直指中央脾土）。
 
 * **体、用**：体为本脏之体味，用为本脏补益之用味（补味），二者与 "德" 相配 —— 肝体酸用辛、心体苦用咸、脾体辛用甘、肺体咸用酸、肾体甘用苦；**泻味即体味**（以酸泻肝、苦泻心、辛泻脾、咸泻肺、甘泻肾）。
 
 * **急**：五脏 "苦欲" 之治 —— 肝苦急食甘、心苦缓食酸、脾苦湿食苦、肺苦气上逆食辛、肾苦燥食咸，皆 "急食" 以济其性。
 
-* **化、除**：即《汤液经法》图之 "化"（五味相合而化，如咸之化用）与 "除"（以味除邪，分除温③、除寒④）—— 图中实线相生即化机流转，虚线相克即除邪制约，与体用、补泻互为表里。
+* **化、除**：即《汤液经法》图之 "化"（化咸：五味相合而化，如咸之化用）与 "除"（除温③ / 除寒④：两味相合以除邪，分温、寒二端）—— 图中相生即化机流转，相克即除邪制约，与体用、补泻互为表里。
 
 ## 三、《汤液经法》图：体、用、化、除
 
