@@ -111,6 +111,13 @@ author: 半夏叁分
     <text x="320" y="588">北·水</text><text x="72" y="334">东·木</text>
     <text x="320" y="412" font-size="11">中央·土</text>
   </g>
+  <g font-family="'Microsoft YaHei',sans-serif" text-anchor="middle">
+    <line x1="168" y1="612" x2="206" y2="612" stroke="#4a8f5e" stroke-width="2.5" marker-end="url(#arS)"/>
+    <text x="222" y="617" font-size="13" fill="#3c6b4c">相生＝化</text>
+    <line x1="300" y1="612" x2="338" y2="612" stroke="#c0654f" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arK)"/>
+    <text x="354" y="617" font-size="13" fill="#8a4538">相克＝除</text>
+    <text x="472" y="617" font-size="12" fill="#9a8a74">化：五味相合 ・ 除：以味除邪</text>
+  </g>
 </svg>
 
 **读图说明**：
@@ -122,6 +129,8 @@ author: 半夏叁分
 * **体、用**：体为本脏之体味，用为本脏补益之用味（补味），二者与 "德" 相配 —— 肝体酸用辛、心体苦用咸、脾体辛用甘、肺体咸用酸、肾体甘用苦；**泻味即体味**（以酸泻肝、苦泻心、辛泻脾、咸泻肺、甘泻肾）。
 
 * **急**：五脏 "苦欲" 之治 —— 肝苦急食甘、心苦缓食酸、脾苦湿食苦、肺苦气上逆食辛、肾苦燥食咸，皆 "急食" 以济其性。
+
+* **化、除**：即《汤液经法》图之 "化"（五味相合而化，如咸之化用）与 "除"（以味除邪，分除温③、除寒④）—— 图中实线相生即化机流转，虚线相克即除邪制约，与体用、补泻互为表里。
 
 ## 三、《汤液经法》图：体、用、化、除
 
