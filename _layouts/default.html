@@ -462,6 +462,14 @@
     tbody tr:nth-child(even) {
       background-color: #fafafa;
     }
+    /* 窄屏：表格可横向滚动，避免撑破正文容器被裁切 */
+    @media (max-width: 700px) {
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
   </style>
   {% if page.mathjax %}
   <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | relative_url }}">
